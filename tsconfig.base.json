@@ -1,23 +1,54 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": false,
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "noErrorTruncation": false,
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2017", "dom"],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@tsql/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@tsql/api-interfaces": [
+        "libs/api-interfaces/src/index.ts"
+      ],
+      "@tsql/common": [
+        "libs/common/src/index.ts"
+      ],
+      "@tsql/nestjs": [
+        "libs/nestjs/src/index.ts"
+      ],
+      "@tsql/angular": [
+        "libs/angular/src/index.ts"
+      ],
+      "@tsql/example-lib": [
+        "libs/example-lib/src/index.ts"
+      ],
+      "@tsql/util": [
+        "libs/util/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

@@ -1,15 +1,22 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { IOperation, Parser, Query } from '@tsql/common';
+import { AddJobPostDto, GetJobPostDto, ExampleAppOperations, JobPost } from '@tsql/example-lib';
+import { Command, INestCommunication } from '@tsql/nestjs';
+import { JobPostRepository } from './repositories/job-post.repository';
 
-import { Message } from '@tsql/api-interfaces';
+@Controller('tsql')
+export class AppController implements INestCommunication<ExampleAppOperations> {
+  constructor(private readonly jobPostRepo: JobPostRepository) {}
 
-import { AppService } from './app.service';
+  @Command()
+  async getJobPost<Q extends Query<JobPost>>(@Body() body: IOperation<GetJobPostDto, JobPost>) {
+    const entity = await this.jobPostRepo.findOne(body.props.id, body.query);
+    return (entity as unknown) as Parser<JobPost, Q>;
+  }
 
-@Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
-
-  @Get('hello')
-  getData(): Message {
-    return this.appService.getData();
+  @Post('addJobPost')
+  async addJobPost<Q extends Query<JobPost>>(@Body() body: IOperation<AddJobPostDto, JobPost>) {
+    console.log(body);
+    return (body as unknown) as Parser<JobPost, Q>;
   }
 }

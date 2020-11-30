@@ -1,5 +1,11 @@
 {
   "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node", "jest"],
+    "emitDecoratorMetadata": true,
+    "target": "es2017",
+    "module": "commonjs"
+  },
   "files": [],
   "include": [],
   "references": [
